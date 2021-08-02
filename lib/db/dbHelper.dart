@@ -13,6 +13,7 @@ class DatabaseHelper {
   static final colName = 'name';
 
   //making a Singleton Class
+
   DatabaseHelper._privateConstructor();
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
   static Database? _database;
@@ -30,10 +31,12 @@ class DatabaseHelper {
   }
 
   Future _oncreate(Database db, int version) async {
-    db.query(''' 
+    db.execute(''' 
                 CREATE TABLE $_tablename ($colId INTEGER PRIMARY KEY , $colName TEXT NOT NULL)
        ''');
   }
+
+  //Helper Functions
 
   Future<int> insertFunction(Map<String, dynamic> row) async {
     Database? db = await instance.database;
